@@ -22,7 +22,7 @@ export default async (req, res) => {
       `https://api.habitify.me/logs/${
         habits[req.query.habit]
       }?from=2018-01-02T00%3A00%3A00%2D10%3A00&to=${
-        newDate.toISOString().slice(0, 19).replaceAll(":", "%3A") + "%2D10%3A00"
+        newDate.toISOString().slice(0, 19).replace(/\:/g, "%3A") + "%2D10%3A00"
       }`,
       { headers: { Authorization: process.env.HABITIFY_AUTH } }
     )
