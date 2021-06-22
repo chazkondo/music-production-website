@@ -27,8 +27,8 @@ export default async (req, res) => {
       { headers: { Authorization: process.env.HABITIFY_AUTH } }
     )
     .then(async (resolve) => {
-      console.log(resolve.data, "test");
-      res.status(200).json(resolve.data);
+      const stringified = JSON.stringify(resolve.data);
+      res.status(200).json(stringified);
     })
     .catch((err) => {
       console.log("An error occurred", err);
