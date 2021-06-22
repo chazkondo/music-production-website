@@ -7,13 +7,14 @@ function Index() {
     <div
       onClick={() => {
         axios
-          .get(`/api/test`)
+          .get(`/api/test/reviewCalendarUpTo1Week`)
           .then((res) => {
-            if (res.data) {
-              setText(res.data);
-            } else {
-              console.log("res error");
-            }
+            console.log(res, "what came back?");
+            // if (res.data) {
+            //   setText(res.data);
+            // } else {
+            //   console.log("res error");
+            // }
           })
           .catch((err) => {
             console.log("an error occurred");
