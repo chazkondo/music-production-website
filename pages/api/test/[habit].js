@@ -1,6 +1,18 @@
 import axios from "axios";
+import Cors from "cors";
+import initMiddleware from "../../../middleware/init-middleware";
+
+// Initialize the cors middleware
+const cors = initMiddleware(
+  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
+  Cors({
+    // Only allow requests with GET, POST and OPTIONS
+    methods: ["GET"],
+  })
+);
 
 export default async (req, res) => {
+  await cors(req, res);
   const newDate = new Date();
   const habits = {
     reviewCalendarUpTo1Week: process.env.REVIEW_CALENDAR_UP_TO_1_WEEK,
