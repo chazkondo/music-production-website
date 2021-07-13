@@ -28,7 +28,7 @@ export default async (req, res) => {
             start_date: item.start_date,
             start_date_local: item.start_date_local,
             time: item.elapsed_time,
-            speed: average_speed,
+            speed: item.average_speed,
           };
         });
         const stringified = JSON.stringify(filtered);
