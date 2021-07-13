@@ -21,7 +21,17 @@ export default async (req, res) => {
         headers: { authorization: `Bearer ${resolve.access_token}` },
       })
       .then(async (response) => {
-        const stringified = JSON.stringify(response.data);
+        const filtered = response.data.map((item) => {
+          return {
+            distance: item.distance,
+            id: item.id,
+            start_date: item.start_date,
+            start_date_local: item.start_date_local,
+            time: item.elapsed_time,
+            speed: average_speed,
+          };
+        });
+        const stringified = JSON.stringify(filtered);
         res.status(200).json(stringified);
       })
       .catch((err) => {
