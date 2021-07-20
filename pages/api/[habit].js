@@ -16,6 +16,7 @@ export default async (req, res) => {
   const newDate = new Date();
   const habits = {
     reviewCalendarUpTo1Week: process.env.REVIEW_CALENDAR_UP_TO_1_WEEK,
+    weeklyGoals: process.env.WEEKLY_GOALS,
     weeklyReview: process.env.WEEKLY_REVIEW,
     emptyCaptures: process.env.EMPTY_CAPTURES,
     reviewReprioritizePersonalOrganizer:
