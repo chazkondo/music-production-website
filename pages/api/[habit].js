@@ -2,6 +2,8 @@ import axios from "axios";
 import Cors from "cors";
 import initMiddleware from "../../middleware/init-middleware";
 
+let cache = {};
+
 // Initialize the cors middleware
 const cors = initMiddleware(
   // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
@@ -30,6 +32,18 @@ export default async (req, res) => {
     lumosity: process.env.LUMOSITY,
   };
 
+  // route: 'reviewCalendarUpTo1Week'
+  // route: 'weeklyGoals'
+  // route: 'weeklyReview'
+  // route: 'emptyCaptures'
+  //  route: 'reviewReprioritizePersonalOrganizer'
+  //  route: 'fifteenMinuteOrganizingCleaning'
+  // route: 'meditationHypnosis'
+  // route: 'studyReadFlashCardsAudible'
+  // route: 'intermittentFasting'
+  //  route: 'nutriblast'
+  // route: 'lumosity'
+
   axios
     .get(
       `https://api.habitify.me/logs/${
@@ -40,7 +54,14 @@ export default async (req, res) => {
       { headers: { Authorization: process.env.HABITIFY_AUTH } }
     )
     .then(async (resolve) => {
-      const stringified = JSON.stringify(resolve.data);
+      const newData = {
+        ...resolve.data,
+        timestamp: newDate,
+        // cache: cache[data] ? cache[data] : "nothing",
+      };
+
+      const stringified = JSON.stringify(newData);
+      res.setHeader("Cache-Control", "s-maxage=86400");
       res.status(200).json(stringified);
     })
     .catch((err) => {

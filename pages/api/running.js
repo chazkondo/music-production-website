@@ -33,6 +33,7 @@ export default async (req, res) => {
           };
         });
         const stringified = JSON.stringify(filtered);
+        res.setHeader("Cache-Control", "s-maxage=86400");
         res.status(200).json(stringified);
       })
       .catch((err) => {
