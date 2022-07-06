@@ -30,6 +30,8 @@ export default async (req, res) => {
     intermittentFasting: process.env.INTERMITTENT_FASTING,
     nutriblast: process.env.NUTRIBLAST,
     lumosity: process.env.LUMOSITY,
+    om: process.env.OM,
+    vs: process.env.VS,
   };
 
   // route: 'reviewCalendarUpTo1Week'
